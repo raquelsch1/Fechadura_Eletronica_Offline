@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+        
+        .container-administrador {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .barra-navegacao {
+            background-color: #166088;
+            color: white;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .marca {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .menu-navegacao {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .item-navegacao {
+            color: white;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+        
+        .item-navegacao:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .conteudo-principal {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .caixa {
+            width: 100%;
+            max-width: 400px;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mensagem-erro {
+            background: #f44336;
+            color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        h1 {
+            color: #166088;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a6fa5;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #4a6fa5;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .acoes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            gap: 0.8rem;
+        }
+        
+        .botao {
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .botao-primario {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .botao-secundario {
+            background: #f44336;
+            color: white;
+        }
+        
+        .botao:hover {
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .barra-navegacao {
+                flex-direction: column;
+                padding: 0.6rem;
+            }
+            .marca {
+                margin-bottom: 0.5rem;
+            }
+            .menu-navegacao {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .caixa {
+                padding: 1rem;
+            }
+            input[type="text"],
+            input[type="password"],
+            select {
+                padding: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-administrador">
+        <nav class="barra-navegacao">
+            <div class="marca">Cadastro de Usuário</div>
+            <div class="menu-navegacao">
+                <a href="/principal_admin" class="item-navegacao">Página Principal</a>
+            </div>
+        </nav>
+        
+        <div class="conteudo-principal">
+            <div class="caixa">
+                <h1>Cadastrar Novo Usuário</h1>
+                
+                <form method="POST" action="/criar-usuario">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tipo">Tipo:</label>
+                        <select id="tipo" name="tipo" required>
+                            <option value="" disabled selected>Selecione o tipo</option>
+                            <option value="admin">Administrador</option>
+                            <option value="comum">Usuário Comum</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usuario">Usuário:</label>
+                        <input type="text" id="usuario" name="usuario" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
+                    
+                    <div class="acoes">
+                        <button type="button" class="botao botao-secundario" onclick="limparCampos()">Limpar</button>
+                        <button type="submit" class="botao botao-primario">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function limparCampos() {
+            document.getElementById('nome').value = '';
+            document.getElementById('tipo').value = '';
+            document.getElementById('usuario').value = '';
+            document.getElementById('senha').value = '';
+        }
+    </script>
+</body>
+</html>
