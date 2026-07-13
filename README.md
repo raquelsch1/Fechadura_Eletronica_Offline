@@ -41,3 +41,9 @@ A solução proposta permite o controle de acesso por usuários autenticados, re
 - HTML
 - CSS
 - JavaScript
+
+## Demonstração
+
+Clique no link abaixo para assistir ao vídeo de funcionamento da fechadura eletrônica:
+
+**[Assistir à demonstração do projeto](https://drive.google.com/drive/folders/1ky3MnQ0o9mTDDh4s85UvGfMH_parVGqk?usp=sharing)**
