@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do Administrador</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(135deg,#f5f7fa,#c3cfe2);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.barra-navegacao{
+    background:#166088;
+    color:#fff;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.lado-esquerdo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.marca{
+    font-size:1.4rem;
+    font-weight:bold;
+}
+
+.menu-navegacao{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.item-navegacao{
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:8px;
+    transition:.2s;
+}
+
+.item-navegacao:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.conteudo-principal{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
+
+.caixa{
+    width:350px;
+    background:white;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+h1{
+    color:#166088;
+    text-align:center;
+    margin-bottom:25px;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.exibir-senha{
+    height:40px;
+    background:#edf3fb;
+    border:2px solid #d3dfec;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.5rem;
+    letter-spacing:8px;
+    margin-bottom:20px;
+    color:#166088;
+    font-weight:bold;
+}
+
+.teclado{
+    display:grid;
+    grid-template-columns:repeat(3,70px);
+    justify-content:center;
+    gap:12px;
+    margin:20px 0;
+}
+
+.tecla{
+    width:50px;
+    height:50px;
+    border-radius:18px;
+    background:linear-gradient(to bottom,#ffffff,#eef4fb);
+    border:2px solid #166088;
+    color:#166088;
+    font-size:1.45rem;
+    font-weight:bold;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.15s;
+    box-shadow:0 5px 12px rgba(0,0,0,.10);
+}
+
+.tecla:hover{
+    background:#166088;
+    color:white;
+    transform:translateY(-2px);
+}
+
+.tecla:active{
+    transform:translateY(1px);
+}
+
+.botoes-superiores{
+    display:flex;
+    gap:15px;
+}
+
+.botao{
+    flex:1;
+    padding: 8px;px;
+    border:none;
+    border-radius:10px;
+    font-size:.95rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.botao:hover{
+    opacity:.9;
+}
+
+.botao-enviar{
+    background:#4CAF50;
+    color:white;
+}
+
+.botao-limpar{
+    background:#8b8b8b;
+    color:white;
+}
+
+.botao-trancar{
+    width:100%;
+    margin-top:10px;
+    padding:8px;
+    border:none;
+    border-radius:10px;
+    background:#e53935;
+    color:white;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.botao-logout{
+    background:#e53935;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@media(max-width:700px){
+
+    .barra-navegacao{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .menu-navegacao{
+        justify-content:center;
+    }
+
+    .caixa{
+        width:100%;
+        max-width:420px;
+        padding:25px;
+    }
+
+    .teclado{
+        grid-template-columns:repeat(3,75px);
+    }
+
+    .tecla{
+        width:75px;
+        height:75px;
+        font-size:1.5rem;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class="barra-navegacao">
+
+<div class="lado-esquerdo">
+<button class="botao-logout">Sair</button>
+<div class="marca">Painel do Administrador</div>
+</div>
+
+<div class="menu-navegacao">
+<a href="#" class="item-navegacao">Cadastrar Usuário</a>
+<a href="#" class="item-navegacao">Acessar Logs</a>
+<a href="#" class="item-navegacao">Alterar Senha</a>
+<a href="#" class="item-navegacao">Excluir Usuário</a>
+</div>
+
+</nav>
+
+<div class="conteudo-principal">
+
+<div class="caixa">
+
+<h1>Insira a senha da fechadura</h1>
+
+<div class="exibir-senha" id="campoSenha">&nbsp;</div>
+
+<input
+type="hidden"
+id="inputSenha">
+
+<div class="teclado">
+
+<div class="tecla" onclick="adicionarNumero('7')">7</div>
+<div class="tecla" onclick="adicionarNumero('8')">8</div>
+<div class="tecla" onclick="adicionarNumero('9')">9</div>
+
+<div class="tecla" onclick="adicionarNumero('4')">4</div>
+<div class="tecla" onclick="adicionarNumero('5')">5</div>
+<div class="tecla" onclick="adicionarNumero('6')">6</div>
+
+<div class="tecla" onclick="adicionarNumero('1')">1</div>
+<div class="tecla" onclick="adicionarNumero('2')">2</div>
+<div class="tecla" onclick="adicionarNumero('3')">3</div>
+
+<div></div>
+<div class="tecla" onclick="adicionarNumero('0')">0</div>
+<div></div>
+
+</div>
+
+<div class="botoes-superiores">
+<button class="botao botao-limpar" onclick="limparSenha()">Limpar</button>
+<button class="botao botao-enviar">Destrancar</button>
+</div>
+
+<button class="botao-trancar">Trancar</button>
+
+</div>
+
+</div>
+
+<script>
+
+let senha="";
+
+const campo=document.getElementById("campoSenha");
+const input=document.getElementById("inputSenha");
+
+function atualizar(){
+    campo.textContent=senha.replace(/./g,"●") || "\u00A0";
+    input.value=senha;
+}
+
+function adicionarNumero(n){
+
+    if(senha.length<6){
+        senha+=n;
+        atualizar();
+    }
+
+}
+
+function limparSenha(){
+    senha="";
+    atualizar();
+}
+
+</script>
+
+</body>
+</html>
